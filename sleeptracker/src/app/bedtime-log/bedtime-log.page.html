@@ -1,13 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Bedtime</ion-title>
+    <ion-title>Log Bedtime</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="'/home'">Back to Menu</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">bedtime-log</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-item *ngIf="!startedBedtime">
+    <ion-label>Start Bedtime</ion-label>
+    <ion-datetime [(ngModel)]="sleepStart" display-format="MM/DD/YYYY HH:mm"></ion-datetime>
+  </ion-item>
+
+  <ion-button *ngIf="!startedBedtime"
+              expand="full"
+              (click)="logSleepStart()">Start Bedtime</ion-button>
+
+  <ion-item *ngIf="startedBedtime && !endedBedtime">
+    <ion-label>End Bedtime</ion-label>
+    <ion-datetime [(ngModel)]="sleepEnd" display-format="MM/DD/YYYY HH:mm"></ion-datetime>
+  </ion-item>
+
+  <ion-button *ngIf="startedBedtime && !endedBedtime"
+              expand="full"
+              (click)="logSleepEnd()"
+              [disabled]="endedBedtime">End Bedtime</ion-button>
 </ion-content>
