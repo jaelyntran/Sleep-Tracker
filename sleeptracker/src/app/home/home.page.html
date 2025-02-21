@@ -1,20 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      RestWise Sleep Tracker
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content color="light">
+  <ion-list inset="true">
+    <ion-item button [routerLink]="'/overnight-sleep-log'">Log Overnight Sleep</ion-item>
+    <ion-item button [routerLink]="'/daytime-sleepiness-log'">Log Daytime Sleepiness</ion-item>
+    <ion-item button [routerLink]="'/logged-data-view'">View Logged Data</ion-item>
+    <ion-item button [routerLink]="'/setting'">Setting</ion-item>
+  </ion-list>
 </ion-content>
