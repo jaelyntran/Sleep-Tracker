@@ -9,19 +9,19 @@
 <ion-content color="light">
   <ion-list inset="true">
     <ion-item button [routerLink]="'/bedtime-log'">
-      <ion-icon name="bed-outline"></ion-icon>
+      <ion-icon name="bed-outline" slot="start"></ion-icon>
       <ion-label>Log Bedtime</ion-label>
     </ion-item>
     <ion-item button [routerLink]="'/daytime-sleepiness-log'">
-      <ion-icon name="happy-outline"></ion-icon>
+      <ion-icon name="happy-outline" slot="start"></ion-icon>
       <ion-label>Log Daytime Sleepiness</ion-label>
     </ion-item>
     <ion-item button [routerLink]="'/logged-data-view'">
-      <ion-icon name="calendar-outline"></ion-icon>
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
       <ion-label>View Logged Data</ion-label>
     </ion-item>
     <ion-item button [routerLink]="'/setting'">
-      <ion-icon name="settings-outline"></ion-icon>
+      <ion-icon name="settings-outline" slot="start"></ion-icon>
       <ion-label>Setting</ion-label>
     </ion-item>
   </ion-list>

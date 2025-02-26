@@ -5,6 +5,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { OvernightSleepData } from "../data/overnight-sleep-data";
 import { RouterModule } from '@angular/router';
 import { SleepDetailsComponent } from "../sleep-details/sleep-details.component";
+import { StorageService } from "../storage.service";
 
 @Component({
   selector: 'app-bedtime-log',
@@ -20,7 +21,7 @@ export class BedtimeLogPage implements OnInit {
   startedBedtime: boolean = false;
   endedBedtime: boolean = false;
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private storageService: StorageService) { }
 
   ngOnInit() {
     this.sleepStart = new Date().toISOString();
@@ -44,6 +45,8 @@ export class BedtimeLogPage implements OnInit {
       console.log('Sleep Duration:', this.sleepData.summaryString());
       console.log('Sleep Date:', this.sleepData.dateString());
 
+      await this.saveSleepLog();
+
       const modal = await this.modalController.create({
         component: SleepDetailsComponent,
         componentProps: {
@@ -61,6 +64,23 @@ export class BedtimeLogPage implements OnInit {
       return await modal.present();
     } else {
       console.log('Please select a valid end time.');
+    }
+  }
+
+  async saveSleepLog() {
+    try {
+      const currentLogs = await this.storageService.get("sleepLogs") || [];
+      currentLogs.push({
+        sleepStart: this.sleepStart,
+        sleepEnd: this.sleepEnd,
+        sleepDuration: this.sleepData.summaryString(),
+        sleepDate: this.sleepData.dateString(),
+      });
+
+      await this.storageService.set("sleepLogs", currentLogs);
+      console.log("Sleep log saved successfully.");
+    } catch (err) {
+      console.log("Error saving sleep log:", err);
     }
   }
 

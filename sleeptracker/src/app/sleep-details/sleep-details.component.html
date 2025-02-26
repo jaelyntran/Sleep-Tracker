@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sleep Summary</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Sleep Summary Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Start time:</strong> {{ formattedSleepStart }}</p>
+      <p><strong>End time:</strong> {{ formattedSleepEnd }}</p>
+      <p><strong>Duration:</strong> {{ sleepDuration }}</p>
+      <p><strong>Date:</strong> {{ sleepDate }}</p>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
