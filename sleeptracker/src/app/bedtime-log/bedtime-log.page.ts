@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import {IonicModule, ModalController, NavController} from '@ionic/angular';
 import { OvernightSleepData } from "../data/overnight-sleep-data";
 import { RouterModule } from '@angular/router';
 import { SleepDetailsComponent } from "../sleep-details/sleep-details.component";
@@ -21,7 +21,9 @@ export class BedtimeLogPage implements OnInit {
   startedBedtime: boolean = false;
   endedBedtime: boolean = false;
 
-  constructor(private modalController: ModalController, private storageService: StorageService) { }
+  constructor(private modalController: ModalController,
+              private storageService: StorageService,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
     this.sleepStart = new Date().toISOString();
@@ -87,5 +89,13 @@ export class BedtimeLogPage implements OnInit {
   resetBedtimeLog() {
     this.endedBedtime = false;
     this.startedBedtime = false;
+  }
+
+  navigateHome() {
+    const activeElement = document.activeElement;
+    if (activeElement instanceof HTMLElement) {
+      activeElement.blur();
+    }
+    this.navCtrl.navigateBack('/home');
   }
 }

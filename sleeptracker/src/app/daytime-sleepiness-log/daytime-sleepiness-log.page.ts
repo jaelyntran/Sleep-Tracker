@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from "@ionic/angular"
+import {IonicModule, NavController} from "@ionic/angular"
 import { RouterModule} from "@angular/router";
+import {StorageService} from "../storage.service";
 
 @Component({
   selector: 'app-daytime-sleepiness-log',
@@ -13,9 +14,17 @@ import { RouterModule} from "@angular/router";
 })
 export class DaytimeSleepinessLogPage implements OnInit {
 
-  constructor() { }
+  constructor(private storageService: StorageService,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
+  navigateHome() {
+    const activeElement = document.activeElement;
+    if (activeElement instanceof HTMLElement) {
+      activeElement.blur();
+    }
+    this.navCtrl.navigateBack('/home');
+  }
 }
