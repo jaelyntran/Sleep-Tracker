@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {IonicModule, ModalController, NavController} from '@ionic/angular';
+import { IonicModule, ModalController, NavController} from '@ionic/angular';
 import { OvernightSleepData } from "../data/overnight-sleep-data";
 import { RouterModule } from '@angular/router';
 import { SleepDetailsComponent } from "../sleep-details/sleep-details.component";

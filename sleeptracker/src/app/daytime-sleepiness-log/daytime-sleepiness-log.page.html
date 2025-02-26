@@ -7,4 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <ion-item>
+    <ion-label>Select your sleepiness level</ion-label>
+    <ion-select [(ngModel)]="sleepinessLevel">
+      <ion-select-option value="1">1: Feeling active, vital, alert, or wide awake</ion-select-option>
+      <ion-select-option value="2">2: Functioning at high levels, but not at peak; able to concentrate</ion-select-option>
+      <ion-select-option value="3">3: Awake, but relaxed; responsive but not fully alert</ion-select-option>
+      <ion-select-option value="4">4: Somewhat foggy, let down</ion-select-option>
+      <ion-select-option value="5">5: Foggy; losing interest in remaining awake; slowed down</ion-select-option>
+      <ion-select-option value="6">6: Sleepy, woozy, fighting sleep; prefer to lie down</ion-select-option>
+      <ion-select-option value="7">7: No longer fighting sleep, sleep onset soon; having dream-like thoughts</ion-select-option>
+    </ion-select>
+  </ion-item>
 
+  <ion-button expand="full" (click)="logSleepiness()">Log Sleepiness</ion-button>
+</ion-content>
