@@ -71,16 +71,21 @@ export class BedtimeLogPage implements OnInit {
 
   async saveSleepLog() {
     try {
-      const currentLogs = await this.storageService.get("sleepLogs") || [];
+      const currentLogs = await this.storageService.get("bedtimeLogs") || [];
       currentLogs.push({
         sleepStart: this.sleepStart,
         sleepEnd: this.sleepEnd,
         sleepDuration: this.sleepData.summaryString(),
         sleepDate: this.sleepData.dateString(),
+        logId: this.sleepData.id,
       });
 
-      await this.storageService.set("sleepLogs", currentLogs);
+      await this.storageService.set("bedtimeLogs", currentLogs);
       console.log("Sleep log saved successfully.");
+      console.log("Length of logs: ", currentLogs.length);
+      for ( let i = 0; i < currentLogs.length; i++ ) {
+        console.log(currentLogs[i]);
+      }
     } catch (err) {
       console.log("Error saving sleep log:", err);
     }

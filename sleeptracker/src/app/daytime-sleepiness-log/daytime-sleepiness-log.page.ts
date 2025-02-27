@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {IonicModule, NavController} from "@ionic/angular"
+import { IonicModule, NavController } from "@ionic/angular"
 import { RouterModule} from "@angular/router";
 import { StorageService } from "../storage.service";
 import { StanfordSleepinessData } from "../data/stanford-sleepiness-data";
@@ -30,9 +30,14 @@ export class DaytimeSleepinessLogPage implements OnInit {
         currentLogs.push({
           sleepinessLevel: this.stanfordSleepiness.summaryString(),
           logTime: this.stanfordSleepiness.loggedAt,
+          logId: this.stanfordSleepiness.id,
         });
         await this.storageService.set("sleepinessLogs", currentLogs);
         console.log("Sleep log saved successfully.");
+        console.log("Length of logs: ", currentLogs.length);
+        for ( let i = 0; i < currentLogs.length; i++ ) {
+          console.log(currentLogs[i]);
+        }
         this.sleepinessLevel = null;
       }
     } catch (err) {

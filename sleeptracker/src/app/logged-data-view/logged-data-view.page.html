@@ -1,8 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Logged Data</ion-title>
+    <ion-title>
+      RestWise Sleep Tracker
+    </ion-title>
     <ion-buttons slot="start">
-      <ion-button [routerLink]="'/home'">Back to Menu</ion-button>
+      <ion-button (click)="navigateHome()">Back to Menu</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Bedtime Logs</ion-list-header>
+    <ion-card *ngFor="let entry of bedtimeData">
+      <ion-card-header>
+        <ion-card-title>{{ entry.sleepDate }}</ion-card-title>
+      </ion-card-header>
+      <ion-label>
+        <h2>Sleep duration: {{ entry.sleepDuration }}</h2>
+        <h3>Start time: {{entry.sleepStart }}</h3>
+        <h3>End time: {{entry.sleepEnd }}</h3>
+      </ion-label>
+    </ion-card>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>Daytime Sleepiness Log</ion-list-header>
+      <ion-card *ngFor="let entry of daytimeSleepinessData">
+        <ion-card-header>
+          <ion-card-title>{{ entry.sleepinessLevel }}</ion-card-title>
+        </ion-card-header>
+        <ion-label>
+          <h2>Logged at: {{ entry.logTime }}</h2>
+        </ion-label>
+      </ion-card>
+  </ion-list>
+</ion-content>
