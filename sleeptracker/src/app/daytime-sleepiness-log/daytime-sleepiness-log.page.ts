@@ -19,7 +19,7 @@ export class DaytimeSleepinessLogPage implements OnInit {
   stanfordSleepiness: StanfordSleepinessData = new StanfordSleepinessData(-1, new Date());
   constructor(private storageService: StorageService,
               private navCtrl: NavController,
-              private alertCtrl: AlertController,) { }
+              private alertController: AlertController,) { }
 
   ngOnInit() {
   }
@@ -36,13 +36,11 @@ export class DaytimeSleepinessLogPage implements OnInit {
         });
         await this.storageService.set("sleepinessLogs", currentLogs);
         console.log("Sleep log saved successfully.");
-        console.log("Length of logs: ", currentLogs.length);
-        for ( let i = 0; i < currentLogs.length; i++ ) {
-          console.log(currentLogs[i]);
-        }
         this.sleepinessLevel = null;
+
+        await this.showSuccessWindow();
       } else {
-        const alert = await this.alertCtrl.create({
+        const alert = await this.alertController.create({
           header: 'Invalid Action',
           message: 'Please select a sleepiness level before logging.',
           buttons: ['OK']
@@ -60,10 +58,25 @@ export class DaytimeSleepinessLogPage implements OnInit {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, "0");
+    let hours = date.getHours();
     const minutes = String(date.getMinutes()).padStart(2, "0");
 
-    return `${month}/${day}/${year} ${hours}:${minutes}`;
+    const period = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const thisDayOfWeek = daysOfWeek[date.getDay()];
+
+    return `${thisDayOfWeek}, ${month}/${day}/${year} ${hours}:${minutes}${period}`;
+  }
+
+  async showSuccessWindow() {
+    const alert = await this.alertController.create({
+      header: 'Success',
+      message: "Logged daytime sleepiness successfully!",
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   navigateHome() {

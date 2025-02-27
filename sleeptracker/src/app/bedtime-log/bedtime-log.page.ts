@@ -33,9 +33,10 @@ export class BedtimeLogPage implements OnInit {
     this.sleepEnd = new Date().toISOString();
   }
 
-  logSleepStart() {
+  async logSleepStart() {
     if (this.sleepStart) {
       console.log("Sleep start: " + this.sleepStart);
+      await this.showSuccessWindow();
       this.startedBedtime = true;
     } else {
       console.log('Please enter a valid start time.');
@@ -53,10 +54,6 @@ export class BedtimeLogPage implements OnInit {
       } else {
         this.endedBedtime = true;
         this.sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd));
-
-        console.log('Sleep End:', this.sleepEnd);
-        console.log('Sleep Duration:', this.sleepData.summaryString());
-        console.log('Sleep Date:', this.sleepData.dateString());
 
         this.sleepStart = this.formatDate(new Date(this.sleepStart));
         this.sleepEnd = this.formatDate(new Date(this.sleepEnd));
@@ -107,10 +104,6 @@ export class BedtimeLogPage implements OnInit {
 
         await this.storageService.set("bedtimeLogs", currentLogs);
         console.log("Sleep log saved successfully.");
-        console.log("Length of logs: ", currentLogs.length);
-        for ( let i = 0; i < currentLogs.length; i++ ) {
-          console.log(currentLogs[i]);
-        }
         return true;
       }
     } catch (err) {
@@ -134,7 +127,15 @@ export class BedtimeLogPage implements OnInit {
       message: message,
       buttons: ['OK']
     });
+    await alert.present();
+  }
 
+  async showSuccessWindow() {
+    const alert = await this.alertController.create({
+      header: 'Success',
+      message: "Logged bedtime successfully!",
+      buttons: ['OK']
+    });
     await alert.present();
   }
 
@@ -142,10 +143,16 @@ export class BedtimeLogPage implements OnInit {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, "0");
+    let hours = date.getHours();
     const minutes = String(date.getMinutes()).padStart(2, "0");
 
-    return `${month}/${day}/${year} ${hours}:${minutes}`;
+    const period = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const thisDayOfWeek = daysOfWeek[date.getDay()];
+
+    return `${thisDayOfWeek}, ${month}/${day}/${year} ${hours}:${minutes}${period}`;
   }
 
   navigateHome() {
