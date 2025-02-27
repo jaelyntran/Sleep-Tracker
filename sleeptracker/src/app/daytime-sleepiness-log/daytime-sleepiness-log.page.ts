@@ -5,6 +5,7 @@ import { IonicModule, NavController } from "@ionic/angular"
 import { RouterModule} from "@angular/router";
 import { StorageService } from "../storage.service";
 import { StanfordSleepinessData } from "../data/stanford-sleepiness-data";
+import { AlertController } from "@ionic/angular";
 
 @Component({
   selector: 'app-daytime-sleepiness-log',
@@ -17,7 +18,8 @@ export class DaytimeSleepinessLogPage implements OnInit {
   sleepinessLevel: number | null = null;
   stanfordSleepiness: StanfordSleepinessData = new StanfordSleepinessData(-1, new Date());
   constructor(private storageService: StorageService,
-              private navCtrl: NavController) { }
+              private navCtrl: NavController,
+              private alertCtrl: AlertController,) { }
 
   ngOnInit() {
   }
@@ -39,6 +41,15 @@ export class DaytimeSleepinessLogPage implements OnInit {
           console.log(currentLogs[i]);
         }
         this.sleepinessLevel = null;
+      } else {
+        const alert = await this.alertCtrl.create({
+          header: 'Invalid Action',
+          message: 'Please select a sleepiness level before logging.',
+          buttons: ['OK']
+        });
+
+        await alert.present();
+        return;
       }
     } catch (err) {
       console.log("Error saving sleepiness level:", err);

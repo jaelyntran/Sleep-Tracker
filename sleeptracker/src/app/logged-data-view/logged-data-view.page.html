@@ -15,12 +15,14 @@
     <ion-card *ngFor="let entry of bedtimeData">
       <ion-card-header>
         <ion-card-title>{{ entry.sleepDate }}</ion-card-title>
+        <ion-card-subtitle>Sleep duration: {{ entry.sleepDuration }}</ion-card-subtitle>
       </ion-card-header>
-      <ion-label>
-        <h2>Sleep duration: {{ entry.sleepDuration }}</h2>
-        <h3>Start time: {{entry.sleepStart }}</h3>
-        <h3>End time: {{entry.sleepEnd }}</h3>
-      </ion-label>
+      <ion-card-content>
+        <ion-label>
+          <h3>Start time: {{entry.sleepStart }}</h3>
+          <h3>End time: {{entry.sleepEnd }}</h3>
+        </ion-label>
+      </ion-card-content>
     </ion-card>
   </ion-list>
 
@@ -30,9 +32,11 @@
         <ion-card-header>
           <ion-card-title>{{ entry.sleepinessLevel }}</ion-card-title>
         </ion-card-header>
-        <ion-label>
-          <h2>Logged at: {{ entry.logTime }}</h2>
-        </ion-label>
+        <ion-card-content>
+          <ion-label>
+            <h2>Logged at: {{ entry.logTime }}</h2>
+          </ion-label>
+        </ion-card-content>
       </ion-card>
   </ion-list>
 </ion-content>
