@@ -10,7 +10,9 @@
 <ion-content>
   <ion-item *ngIf="!startedBedtime">
     <ion-label>Start Bedtime</ion-label>
-    <ion-datetime [(ngModel)]="sleepStart" display-format="MM/DD/YYYY HH:mm"></ion-datetime>
+    <ion-datetime [(ngModel)]="sleepStart" presentation="date-time">
+      <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+    </ion-datetime>
   </ion-item>
 
   <ion-button *ngIf="!startedBedtime"
@@ -19,7 +21,9 @@
 
   <ion-item *ngIf="startedBedtime && !endedBedtime">
     <ion-label>End Bedtime</ion-label>
-    <ion-datetime [(ngModel)]="sleepEnd" display-format="MM/DD/YYYY HH:mm"></ion-datetime>
+    <ion-datetime [(ngModel)]="sleepEnd" presentation="date-time">
+      <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+    </ion-datetime>
   </ion-item>
 
   <ion-button *ngIf="startedBedtime && !endedBedtime"
