@@ -14,16 +14,10 @@ export class SleepDetailsComponent implements OnInit {
   @Input() sleepDuration!: string;
   @Input() sleepDate!: string;
 
-  formattedSleepStart: Date = new Date();
-  formattedSleepEnd: Date = new Date();
-
 
   constructor(private modalController: ModalController) { }
 
-  ngOnInit() {
-    this.formattedSleepStart = new Date(this.sleepStart);
-    this.formattedSleepEnd = new Date(this.sleepEnd);
-  }
+  ngOnInit() { }
 
   dismiss() {
     this.modalController.dismiss();

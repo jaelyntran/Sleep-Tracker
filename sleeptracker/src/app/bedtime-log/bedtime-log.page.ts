@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, formatDate} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController, NavController} from '@ionic/angular';
 import { OvernightSleepData } from "../data/overnight-sleep-data";
@@ -53,9 +53,13 @@ export class BedtimeLogPage implements OnInit {
       } else {
         this.endedBedtime = true;
         this.sleepData = new OvernightSleepData(new Date(this.sleepStart), new Date(this.sleepEnd));
+
         console.log('Sleep End:', this.sleepEnd);
         console.log('Sleep Duration:', this.sleepData.summaryString());
         console.log('Sleep Date:', this.sleepData.dateString());
+
+        this.sleepStart = this.formatDate(new Date(this.sleepStart));
+        this.sleepEnd = this.formatDate(new Date(this.sleepEnd));
 
         if(await this.saveSleepLog()) {
           const modal = await this.modalController.create({
@@ -132,6 +136,16 @@ export class BedtimeLogPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  formatDate(date: Date): string {
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    return `${month}/${day}/${year} ${hours}:${minutes}`;
   }
 
   navigateHome() {
