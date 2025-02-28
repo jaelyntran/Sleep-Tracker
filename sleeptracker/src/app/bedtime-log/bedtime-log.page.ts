@@ -108,7 +108,6 @@ export class BedtimeLogPage implements OnInit {
       }
     } catch (err) {
       console.log("Error saving sleep log:", err);
-      await this.showErrorWindow(this.errorMessage);
       this.errorMessage = "";
       return false;
     }

@@ -11,28 +11,63 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Bedtime Logs</ion-list-header>
-    <ion-card *ngFor="let entry of bedtimeData">
-      <ion-card-header>
-        <ion-card-title>{{ entry.sleepDate }}</ion-card-title>
-        <ion-card-subtitle>Sleep duration: {{ entry.sleepDuration }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-label>
-          <h3>Start time: {{entry.sleepStart }}</h3>
-          <h3>End time: {{entry.sleepEnd }}</h3>
-        </ion-label>
-      </ion-card-content>
-    </ion-card>
+    <ion-list-header>
+      <ion-button expand="full" (click)="toggleBedtimeLogs()">
+        {{ isBedtimeLogsExpanded ? 'Collapse Bedtime Logs' : 'Expand Bedtime Logs' }}
+      </ion-button>
+    </ion-list-header>
+
+    <div *ngIf="isBedtimeLogsExpanded">
+      <h2>Recorded Overnight Sleep</h2>
+      <ion-card *ngFor="let entry of bedtimeDataToShow">
+        <ion-card-header>
+          <ion-card-title>{{ entry.sleepDate }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label>
+            <h1>Sleep duration: {{ entry.sleepDuration }}</h1>
+            <h2>Start time: {{entry.sleepStart }}</h2>
+            <h2>End time: {{entry.sleepEnd }}</h2>
+          </ion-label>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="full" (click)="goBackBedtime()" [disabled]="isFirstBedtimePage()">Go Back</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="full" (click)="loadMoreBedtime()" [disabled]="isLastBedtimePage()">Load More</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-list>
 
   <ion-list>
-    <ion-list-header>Daytime Sleepiness Log</ion-list-header>
-      <ion-card *ngFor="let entry of daytimeSleepinessData">
+    <ion-list-header>
+      <ion-button expand="full" (click)="toggleSleepinessLogs()">
+        {{ isSleepinessLogsExpanded ? 'Collapse Daytime Sleepiness Logs' : 'Expand Daytime Sleepiness Logs' }}
+      </ion-button>
+    </ion-list-header>
+
+    <div *ngIf="isSleepinessLogsExpanded">
+      <h2>Recorded Sleepiness Throughout the Day</h2>
+      <ion-card *ngFor="let entry of daytimeSleepinessDataToShow">
         <ion-card-header>
+          <h3>{{ entry.sleepinessLevel }}</h3>
           <ion-card-title>{{ entry.logTime }}</ion-card-title>
-          <ion-card-subtitle>{{ entry.sleepinessLevel }}</ion-card-subtitle>
         </ion-card-header>
       </ion-card>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="full" (click)="goBackSleepiness()" [disabled]="isFirstSleepinessPage()">Go Back</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="full" (click)="loadMoreSleepiness()" [disabled]="isLastSleepinessPage()">Load More</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-list>
 </ion-content>
+

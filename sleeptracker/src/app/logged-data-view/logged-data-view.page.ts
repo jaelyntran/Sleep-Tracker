@@ -17,15 +17,92 @@ import { ViewWillEnter } from '@ionic/angular';
 export class LoggedDataViewPage implements OnInit, ViewWillEnter {
   bedtimeData: any [] = [];
   daytimeSleepinessData: any [] = [];
+  bedtimeDataToShow: any[] = [];
+  daytimeSleepinessDataToShow: any[] = [];
+  bedtimePage: number = 0;
+  sleepinessPage: number = 0;
+  bedtimeItemsPerPage: number = 3;
+  sleepItemsPerPage: number = 5;
+  isBedtimeLogsExpanded: boolean = true;
+  isSleepinessLogsExpanded: boolean = true;
+
+
   constructor(private storageService: StorageService,
               private navCtrl: NavController) { }
 
   async ionViewWillEnter(): Promise<void> {
     this.bedtimeData = await this.storageService.get("bedtimeLogs");
     this.daytimeSleepinessData = await this.storageService.get("sleepinessLogs");
+
+    this.loadBedtimeData();
+    this.loadDaytimeSleepinessData();
   }
 
   ngOnInit() { }
+
+  loadBedtimeData() {
+    const start = this.bedtimePage * this.bedtimeItemsPerPage;
+    const end = start + this.bedtimeItemsPerPage;
+    this.bedtimeDataToShow = this.bedtimeData.slice(start, end);
+  }
+
+  loadDaytimeSleepinessData() {
+    const start = this.sleepinessPage * this.sleepItemsPerPage;
+    const end = start + this.sleepItemsPerPage;
+    this.daytimeSleepinessDataToShow = this.daytimeSleepinessData.slice(start, end);
+  }
+
+  loadMoreBedtime() {
+    if (!this.isLastBedtimePage()) {
+      this.bedtimePage++;
+      this.loadBedtimeData();
+    }
+  }
+
+  loadMoreSleepiness() {
+    if (!this.isLastSleepinessPage()) {
+      this.sleepinessPage++;
+      this.loadDaytimeSleepinessData();
+    }
+  }
+
+  goBackBedtime() {
+    if (!this.isFirstBedtimePage()) {
+      this.bedtimePage--;
+      this.loadBedtimeData();
+    }
+  }
+
+  goBackSleepiness() {
+    if (!this.isFirstSleepinessPage()) {
+      this.sleepinessPage--;
+      this.loadDaytimeSleepinessData();
+    }
+  }
+
+  isFirstBedtimePage(): boolean {
+    return this.bedtimePage === 0;
+  }
+
+  isLastBedtimePage(): boolean {
+    return this.bedtimePage >= Math.ceil(this.bedtimeData.length / this.bedtimeItemsPerPage) - 1;
+  }
+
+  isFirstSleepinessPage(): boolean {
+    return this.sleepinessPage === 0;
+  }
+
+  isLastSleepinessPage(): boolean {
+    return this.sleepinessPage >= Math.ceil(this.daytimeSleepinessData.length / this.sleepItemsPerPage) - 1;
+  }
+
+  toggleBedtimeLogs() {
+    this.isBedtimeLogsExpanded = !this.isBedtimeLogsExpanded;
+  }
+
+  toggleSleepinessLogs() {
+    this.isSleepinessLogsExpanded = !this.isSleepinessLogsExpanded;
+  }
 
   navigateHome() {
     const activeElement = document.activeElement;
@@ -34,5 +111,4 @@ export class LoggedDataViewPage implements OnInit, ViewWillEnter {
     }
     this.navCtrl.navigateBack('/home');
   }
-
 }
