@@ -29,6 +29,14 @@ export class StorageService {
   }
 
   async clearAll(): Promise<void> {
+    const allKeys = await this.sleepDB?.keys();
+
+    if (!allKeys || allKeys.length === 0) {
+      console.log('No data to clear');
+      return;
+    }
+
     await this.sleepDB?.clear();
+    console.log('All data has been cleared');
   }
 }

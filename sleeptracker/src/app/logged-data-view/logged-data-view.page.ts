@@ -27,8 +27,8 @@ export class LoggedDataViewPage implements OnInit, ViewWillEnter {
               private navCtrl: NavController) { }
 
   async ionViewWillEnter(): Promise<void> {
-    this.bedtimeData = await this.storageService.get("bedtimeLogs");
-    this.daytimeSleepinessData = await this.storageService.get("sleepinessLogs");
+    this.bedtimeData = await this.storageService.get("bedtimeLogs") || [];
+    this.daytimeSleepinessData = await this.storageService.get("sleepinessLogs") || [];
 
     this.bedtimeData.reverse();
     this.daytimeSleepinessData.reverse();

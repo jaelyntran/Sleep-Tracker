@@ -7,10 +7,68 @@
 </ion-header>
 
 <ion-content color="light">
+  <div id="greeting">
+    {{ greeting }}
+  </div>
+  <div id="current-time">
+    {{ currentTime }}
+  </div>
+
+  <ion-grid>
+    <ion-row style="height: 100%;"
+             class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="6" size-md="4" size-lg="2">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ averageSleepDurationInHoursAndMinutes() }}</ion-card-subtitle>
+            <p>Average Sleep Duration</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="4" size-lg="2">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Level {{ averageSleepiness }}</ion-card-subtitle>
+            <p>Average Daytime Sleepiness</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="height: 100%;"
+             class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="6" size-md="4" size-lg="2">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ longestSleep }}</ion-card-subtitle>
+            <p>Longest Night</p>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ longestSleepNight }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="4" size-lg="2">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ shortestSleep }}</ion-card-subtitle>
+            <p>Shortest Night</p>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ shortestSleepNight }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
   <ion-list inset="true">
     <ion-item button [routerLink]="'/bedtime-log'">
       <ion-icon name="bed-outline" slot="start"></ion-icon>
-      <ion-label>Log Bedtime</ion-label>
+      <ion-label>Log Overnight Sleep</ion-label>
     </ion-item>
     <ion-item button [routerLink]="'/daytime-sleepiness-log'">
       <ion-icon name="happy-outline" slot="start"></ion-icon>
@@ -21,4 +79,11 @@
       <ion-label>View Logged Data</ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-button shape="round"
+              fill="outline"
+              expand="full"
+              color="danger" (click)="-clearAppData()">
+    Clear All App Data
+  </ion-button>
 </ion-content>
