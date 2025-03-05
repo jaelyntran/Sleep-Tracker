@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Log Bedtime</ion-title>
+    <ion-title>Bedtime</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="navigateHome()">Back to Menu</ion-button>
     </ion-buttons>
@@ -8,8 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-item *ngIf="!startedBedtime">
-    <ion-label>Start Bedtime</ion-label>
+  <ion-item *ngIf="!startedBedtime" lines="none" class="label-item">
+    <ion-label class="bedtime-label">Start my bedtime</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="!startedBedtime" lines="none" class="datetime-item">
     <ion-datetime [(ngModel)]="sleepStart" presentation="date-time">
       <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
     </ion-datetime>
@@ -17,10 +20,13 @@
 
   <ion-button *ngIf="!startedBedtime"
               expand="full"
-              (click)="logSleepStart()">Start Bedtime</ion-button>
+              (click)="logSleepStart()">Save</ion-button>
 
-  <ion-item *ngIf="startedBedtime && !endedBedtime">
-    <ion-label>End Bedtime</ion-label>
+  <ion-item *ngIf="startedBedtime && !endedBedtime" lines="none" class="label-item">
+    <ion-label class="bedtime-label">End my bedtime</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="startedBedtime && !endedBedtime" lines="none" class="datetime-item">
     <ion-datetime [(ngModel)]="sleepEnd" presentation="date-time">
       <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
     </ion-datetime>
@@ -29,5 +35,5 @@
   <ion-button *ngIf="startedBedtime && !endedBedtime"
               expand="full"
               (click)="logSleepEnd()"
-              [disabled]="endedBedtime">End Bedtime</ion-button>
+              [disabled]="endedBedtime">Save</ion-button>
 </ion-content>

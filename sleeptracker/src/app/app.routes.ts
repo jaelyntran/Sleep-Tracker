@@ -19,10 +19,6 @@ export const routes: Routes = [
     loadComponent: () => import('./daytime-sleepiness-log/daytime-sleepiness-log.page').then( m => m.DaytimeSleepinessLogPage)
   },
   {
-    path: 'setting',
-    loadComponent: () => import('./setting/setting.page').then( m => m.SettingPage)
-  },
-  {
     path: 'bedtime-log',
     loadComponent: () => import('./bedtime-log/bedtime-log.page').then( m => m.BedtimeLogPage)
   },

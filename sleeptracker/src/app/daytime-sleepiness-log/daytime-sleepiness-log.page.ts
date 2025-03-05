@@ -15,8 +15,19 @@ import { AlertController } from "@ionic/angular";
   imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class DaytimeSleepinessLogPage implements OnInit {
-  sleepinessLevel: number | null = null;
+  sleepinessLevel: number = 1;
   stanfordSleepiness: StanfordSleepinessData = new StanfordSleepinessData(-1, new Date());
+  levels: number[] = [1, 2, 3, 4, 5, 6, 7];
+  levelDescriptions: string[] = [
+    'Feeling active, vital, alert, or wide awake',
+    'Functioning at high levels, but not at peak; able to concentrate',
+    'Awake, but relaxed; responsive but not fully alert',
+    'Somewhat foggy, let down',
+    'Foggy; losing interest in remaining awake; slowed down',
+    'Sleepy, woozy, fighting sleep; prefer to lie down',
+    'No longer fighting sleep, sleep onset soon; having dream-like thoughts'
+  ];
+
   constructor(private storageService: StorageService,
               private navCtrl: NavController,
               private alertController: AlertController,) { }
@@ -36,7 +47,7 @@ export class DaytimeSleepinessLogPage implements OnInit {
         });
         await this.storageService.set("sleepinessLogs", currentLogs);
         console.log("Sleep log saved successfully.");
-        this.sleepinessLevel = null;
+        this.sleepinessLevel = 1;
 
         await this.showSuccessWindow();
       } else {

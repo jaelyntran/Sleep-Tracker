@@ -1,0 +1,26 @@
+.log-section {
+  text-align: center;
+}
+
+.section-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+ion-card {
+  padding: 10px;
+  margin: 40px;
+}
+
+ion-content {
+  --padding-top: 0;
+}
+
+ion-tab {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+}

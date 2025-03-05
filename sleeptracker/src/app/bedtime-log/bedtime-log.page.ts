@@ -36,7 +36,7 @@ export class BedtimeLogPage implements OnInit {
   async logSleepStart() {
     if (this.sleepStart) {
       console.log("Sleep start: " + this.sleepStart);
-      await this.showSuccessWindow();
+      await this.showSuccessWindow("You've started sleep on " + this.formatDate(new Date(this.sleepStart)));
       this.startedBedtime = true;
     } else {
       console.log('Please enter a valid start time.');
@@ -46,8 +46,7 @@ export class BedtimeLogPage implements OnInit {
   async logSleepEnd() {
     if (this.sleepEnd) {
       if (new Date(this.sleepEnd) <= new Date(this.sleepStart)) {
-        this.errorMessage = "Sleep must span overnight. " +
-          "Please select a valid end time.";
+        this.errorMessage = "Sleep must span overnight and your end time cannot precede start time.";
         await this.showErrorWindow(this.errorMessage);
         this.errorMessage = "";
         return;
@@ -129,10 +128,10 @@ export class BedtimeLogPage implements OnInit {
     await alert.present();
   }
 
-  async showSuccessWindow() {
+  async showSuccessWindow(message: string) {
     const alert = await this.alertController.create({
       header: 'Success',
-      message: "Logged bedtime successfully!",
+      message: message,
       buttons: ['OK']
     });
     await alert.present();

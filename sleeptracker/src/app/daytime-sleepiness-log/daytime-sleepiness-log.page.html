@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Log Daytime Sleepiness</ion-title>
+    <ion-title>Daytime Sleepiness</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="navigateHome()">Back to Menu</ion-button>
     </ion-buttons>
@@ -8,18 +8,29 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>Select your sleepiness level</ion-label>
-    <ion-select [(ngModel)]="sleepinessLevel">
-      <ion-select-option value="1">1: Feeling active, vital, alert, or wide awake</ion-select-option>
-      <ion-select-option value="2">2: Functioning at high levels, but not at peak; able to concentrate</ion-select-option>
-      <ion-select-option value="3">3: Awake, but relaxed; responsive but not fully alert</ion-select-option>
-      <ion-select-option value="4">4: Somewhat foggy, let down</ion-select-option>
-      <ion-select-option value="5">5: Foggy; losing interest in remaining awake; slowed down</ion-select-option>
-      <ion-select-option value="6">6: Sleepy, woozy, fighting sleep; prefer to lie down</ion-select-option>
-      <ion-select-option value="7">7: No longer fighting sleep, sleep onset soon; having dream-like thoughts</ion-select-option>
-    </ion-select>
+  <ion-item lines="none">
+    <ion-label class="sleepiness-label">My sleepiness level is</ion-label>
   </ion-item>
 
-  <ion-button expand="full" (click)="logSleepiness()">Log Sleepiness</ion-button>
+  <ion-item>
+    <ion-range min="1"
+               max="7"
+               step="1"
+               [(ngModel)]="sleepinessLevel"
+               snaps="true"
+               pin="true"
+               class="sleepiness-slider">
+      <ion-label slot="start">1</ion-label>
+      <ion-label slot="end">7</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let level of levels">
+      <ion-label class="level-label">{{ level }}</ion-label>
+      <p class="level-description">{{ levelDescriptions[level - 1] }}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="logSleepiness()">Save</ion-button>
 </ion-content>

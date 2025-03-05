@@ -27,4 +27,8 @@ export class StorageService {
   async remove(key: string): Promise<any> {
     await this.sleepDB?.remove(key);
   }
+
+  async clearAll(): Promise<void> {
+    await this.sleepDB?.clear();
+  }
 }
