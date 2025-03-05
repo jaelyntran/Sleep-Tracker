@@ -29,6 +29,7 @@ export class HomePage implements OnInit, ViewWillEnter{
   averageSleepiness: number = 0;
   currentTime: string = "";
   greeting: string = '';
+  gif: string = '';
 
   constructor(private storageService: StorageService,
               private alertController : AlertController,
@@ -64,12 +65,16 @@ export class HomePage implements OnInit, ViewWillEnter{
   setGreeting(hours: number) {
     if (hours >= 5 && hours < 12) {
       this.greeting = 'Good Morning ☀️';
+      this.gif = "assets/pompompurin-morning.gif";
     } else if (hours >= 12 && hours < 17) {
       this.greeting = 'Good Afternoon 🌤️';
+      this.gif = "assets/pompompurin-afternoon.gif";
     } else if (hours >= 17 && hours < 21) {
       this.greeting = 'Good Evening 🌙';
+      this.gif = "assets/pompompurin-evening.gif";
     } else {
       this.greeting = 'Good Night 🌌';
+      this.gif = "assets/pompompurin-night.gif";
     }
   }
 
