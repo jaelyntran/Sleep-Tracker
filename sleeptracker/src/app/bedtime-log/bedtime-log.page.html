@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Overnight Sleep</ion-title>
+    <ion-title>Bedtime</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="navigateHome()">Back to Menu</ion-button>
     </ion-buttons>
@@ -18,9 +18,12 @@
     </ion-datetime>
   </ion-item>
 
-  <ion-button *ngIf="!startedBedtime"
-              expand="full"
-              (click)="logSleepStart()">Save</ion-button>
+  <div class="submit-section">
+    <ion-button *ngIf="!startedBedtime"
+                shape="round"
+                (click)="logSleepStart()"
+                class="submit-button">Save</ion-button>
+  </div>
 
   <ion-item *ngIf="startedBedtime && !endedBedtime" lines="none" class="label-item">
     <ion-label class="bedtime-label">End my bedtime</ion-label>
@@ -32,8 +35,11 @@
     </ion-datetime>
   </ion-item>
 
-  <ion-button *ngIf="startedBedtime && !endedBedtime"
-              expand="full"
-              (click)="logSleepEnd()"
-              [disabled]="endedBedtime">Save</ion-button>
+  <div class="submit-section">
+    <ion-button *ngIf="startedBedtime && !endedBedtime"
+                shape="round"
+                (click)="logSleepEnd()"
+                [disabled]="endedBedtime"
+                class="submit-button">Save</ion-button>
+  </div>
 </ion-content>

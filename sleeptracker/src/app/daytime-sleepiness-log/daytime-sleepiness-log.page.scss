@@ -2,7 +2,8 @@
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 80px;
+  color: #ffe796;
 }
 
 ion-list {
@@ -20,6 +21,7 @@ ion-list {
   margin-bottom: 5px;
   margin-left: 20px;
   display: inline-block;
+  color: #ffe796;
 }
 
 .level-description {
@@ -30,3 +32,16 @@ ion-list {
   text-align: right;
 }
 
+.submit-button {
+  margin-top: 10px;
+  width: auto;
+  max-width: 300px;
+  margin-bottom: 40px;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

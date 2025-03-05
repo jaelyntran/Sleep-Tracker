@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Daytime Sleepiness</ion-title>
+    <ion-title>Sleepiness</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="navigateHome()">Back to Menu</ion-button>
     </ion-buttons>
@@ -32,5 +32,9 @@
     </ion-item>
   </ion-list>
 
-  <ion-button expand="full" (click)="logSleepiness()">Save</ion-button>
+  <div class="submit-section">
+    <ion-button shape="round"
+                (click)="logSleepiness()"
+                class="submit-button">Save</ion-button>
+  </div>
 </ion-content>

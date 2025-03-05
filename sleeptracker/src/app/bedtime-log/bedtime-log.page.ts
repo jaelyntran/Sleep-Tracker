@@ -102,7 +102,6 @@ export class BedtimeLogPage implements OnInit {
         });
 
         await this.storageService.set("bedtimeLogs", currentLogs);
-        console.log("Sleep log saved successfully.");
         return true;
       }
     } catch (err) {

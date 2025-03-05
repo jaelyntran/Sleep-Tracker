@@ -30,18 +30,29 @@
           <ion-card-content>
             <ion-label>
               <h1>{{ entry.sleepDuration }}</h1>
-              <h2>From {{entry.sleepStart }}</h2>
-              <h2>to {{entry.sleepEnd }}</h2>
+              <h2>{{ entry.sleepStart }}</h2>
+              <h2>to</h2>
+              <h2>{{ entry.sleepEnd }}</h2>
             </ion-label>
           </ion-card-content>
         </ion-card>
 
         <ion-row>
           <ion-col size="6">
-            <ion-button expand="full" (click)="goBackBedtime()" [disabled]="isFirstBedtimePage()">Go Back</ion-button>
+            <ion-button shape="round"
+                        expand="full"
+                        fill="outline"
+                        (click)="goBackBedtime()"
+                        [disabled]="isFirstBedtimePage()"
+                        class="pagination-button">Go Back</ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button expand="full" (click)="loadMoreBedtime()" [disabled]="isLastBedtimePage()">Load More</ion-button>
+            <ion-button shape="round"
+                        expand="full"
+                        fill="outline"
+                        (click)="loadMoreBedtime()"
+                        [disabled]="isLastBedtimePage()"
+                        class="pagination-button">Load More</ion-button>
           </ion-col>
         </ion-row>
       </ion-list>
@@ -59,10 +70,20 @@
 
         <ion-row>
           <ion-col size="6">
-            <ion-button expand="full" (click)="goBackSleepiness()" [disabled]="isFirstSleepinessPage()">Go Back</ion-button>
+            <ion-button shape="round"
+                        expand="full"
+                        fill="outline"
+                        (click)="goBackSleepiness()"
+                        [disabled]="isFirstSleepinessPage()"
+                        class="pagination-button">Go Back</ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button expand="full" (click)="loadMoreSleepiness()" [disabled]="isLastSleepinessPage()">Load More</ion-button>
+            <ion-button shape="round"
+                        expand="full"
+                        fill="outline"
+                        (click)="loadMoreSleepiness()"
+                        [disabled]="isLastSleepinessPage()"
+                        class="pagination-button">Load More</ion-button>
           </ion-col>
         </ion-row>
       </ion-list>
