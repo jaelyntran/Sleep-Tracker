@@ -30,15 +30,17 @@ Most resources on https://ionicframework.com/docs/api/
 N/A
 
 5. Is there anything special we need to know in order to run your code?
-I have only tested the app using Chrome DevTools mobile simulator
+I have only tested the app using Chrome DevTools mobile simulator.
 
 
 --Aim for no more than two sentences for each of the following questions.--
 6. Did you design your app with a particular type of user in mind? If so, whom?
-***
+I designed this sleep tracker app with users who are somewhat familiar with technology in mind. As long as users know
+how to navigate a smartphone, they should find it fairly straightforward to use.
 
 7. Did you design your app specifically for iOS or Android, or both?
-***
+I didn't design the app with a specific platform in mind. My focus was more on the app's functionality and user
+experience rather than tailoring it to a particular operating system.
 
 8. How can a person log overnight sleep in your app? Why did you choose to support logging overnight sleep in this way?
 I have a calendar where the user can select the day and time, and they can log the time they go to bed and the time they
@@ -58,13 +60,13 @@ pagination where each page will only show 7 entries at a time (starting with the
 to prevent infinite scrolling if there is a large amount of data and provide ease of navigation.
 
 11. Which feature choose--using a native device resource, backing up logged data, or both?
-Backing up logged data
+Backing up logged data.
 
 12. If you used a native device resource, what feature did you add? How does this feature change the app's experience for a user?
 N/A
 
 13. If you backed up logged data, where does it back up to?
-Local storage
+Local storage.
 
 14. How does your app implement or follow principles of good mobile design?
 I try to ensure that the app is simple and user-friendly. Core features like logging and viewing data are accessible while
