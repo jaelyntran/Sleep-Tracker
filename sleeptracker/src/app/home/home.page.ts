@@ -110,13 +110,6 @@ export class HomePage implements OnInit, ViewWillEnter{
     return 0;
   }
 
-  averageSleepDuration(): number {
-    const totalDurationInMinutes = this.bedtimeData.reduce((sum, log) => {
-      return sum + this.parseSleepDuration(log.sleepDuration);
-    }, 0);
-    return this.bedtimeData.length > 0 ? totalDurationInMinutes / this.bedtimeData.length : 0;
-  }
-
   longestNight() {
     if (this.bedtimeData.length === 0) {
       this.longestSleep = '0 h 0 min';
@@ -165,6 +158,13 @@ export class HomePage implements OnInit, ViewWillEnter{
     return date.toLocaleDateString('en-US', options);
   }
 
+  averageSleepDuration(): number {
+    const totalDurationInMinutes = this.bedtimeData.reduce((sum, log) => {
+      return sum + this.parseSleepDuration(log.sleepDuration);
+    }, 0);
+    return this.bedtimeData.length > 0 ? totalDurationInMinutes / this.bedtimeData.length : 0;
+  }
+
   averageSleepDurationInHoursAndMinutes(): string {
     const avgMinutes = this.averageSleepDuration();
     const hours = Math.floor(avgMinutes / 60);
@@ -202,6 +202,7 @@ export class HomePage implements OnInit, ViewWillEnter{
               this.longestSleepNight = 'No data available';
               this.shortestSleep= '0 h 0 min';
               this.shortestSleepNight = 'No data available';
+              this.averageSleepiness = 0;
 
               console.log('All data has been cleared');
 
