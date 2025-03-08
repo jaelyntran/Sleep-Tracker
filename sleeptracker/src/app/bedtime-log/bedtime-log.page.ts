@@ -28,9 +28,16 @@ export class BedtimeLogPage implements OnInit {
               private navCtrl: NavController,
               private alertController: AlertController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.sleepStart = new Date().toISOString();
     this.sleepEnd = new Date().toISOString();
+
+    const ongoingSleep = await this.storageService.get("ongoingSleep") || "";
+    if(ongoingSleep !== "") {
+      this.startedBedtime = true;
+      this.sleepStart = ongoingSleep;
+      await this.storageService.set("ongoingSleep", "");
+    }
   }
 
   async logSleepStart() {
@@ -152,11 +159,16 @@ export class BedtimeLogPage implements OnInit {
     return `${thisDayOfWeek}, ${month}/${day}/${year} ${hours}:${minutes}${period}`;
   }
 
-  navigateHome() {
+  async navigateHome() {
     const activeElement = document.activeElement;
     if (activeElement instanceof HTMLElement) {
       activeElement.blur();
     }
-    this.navCtrl.navigateBack('/home');
+
+    if(this.startedBedtime) {
+      await this.storageService.set("ongoingSleep", this.sleepStart);
+    }
+
+    await this.navCtrl.navigateBack('/home');
   }
 }
