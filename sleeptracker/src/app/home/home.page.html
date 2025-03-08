@@ -6,11 +6,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content color="">
   <img src="{{ gif }}"
        alt="Pompompurin greeting"
        class="display-gif">
-  <div id="greeting">
+  <div id="greeting" [ngStyle]="{ color: greetingColor }">
     {{ greeting }}
   </div>
   <div id="current-time">
@@ -21,7 +21,7 @@
     <ion-row style="height: 100%;"
              class="ion-align-items-center ion-justify-content-center">
       <ion-col size="6" size-md="4" size-lg="2">
-        <ion-card>
+        <ion-card color="secondary">
           <ion-card-header>
             <ion-card-subtitle>{{ averageSleepDurationInHoursAndMinutes() }}</ion-card-subtitle>
             <p>Average Sleep Duration</p>
@@ -30,7 +30,7 @@
       </ion-col>
 
       <ion-col size="6" size-md="4" size-lg="2">
-        <ion-card>
+        <ion-card color="secondary">
           <ion-card-header>
             <ion-card-subtitle>Level {{ averageSleepiness }}</ion-card-subtitle>
             <p>Average Daytime Sleepiness</p>
@@ -42,7 +42,7 @@
     <ion-row style="height: 100%;"
              class="ion-align-items-center ion-justify-content-center">
       <ion-col size="6" size-md="4" size-lg="2">
-        <ion-card>
+        <ion-card color="secondary">
           <ion-card-header>
             <ion-card-subtitle>{{ longestSleep }}</ion-card-subtitle>
             <p>Longest Night</p>
@@ -54,7 +54,7 @@
       </ion-col>
 
       <ion-col size="6" size-md="4" size-lg="2">
-        <ion-card>
+        <ion-card color="secondary">
           <ion-card-header>
             <ion-card-subtitle>{{ shortestSleep }}</ion-card-subtitle>
             <p>Shortest Night</p>

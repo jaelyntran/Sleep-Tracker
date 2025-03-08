@@ -30,6 +30,7 @@ export class HomePage implements OnInit, ViewWillEnter{
   currentTime: string = "";
   greeting: string = '';
   gif: string = '';
+  greetingColor: string = "";
 
   constructor(private storageService: StorageService,
               private alertController : AlertController,
@@ -66,15 +67,19 @@ export class HomePage implements OnInit, ViewWillEnter{
     if (hours >= 5 && hours < 12) {
       this.greeting = 'Good Morning ☀️';
       this.gif = "assets/pompompurin-morning.gif";
+      this.greetingColor = "#de9bae";
     } else if (hours >= 12 && hours < 17) {
       this.greeting = 'Good Afternoon 🌤️';
       this.gif = "assets/pompompurin-afternoon.gif";
+      this.greetingColor = "#ff8052";
     } else if (hours >= 17 && hours < 21) {
       this.greeting = 'Good Evening 🌙';
       this.gif = "assets/pompompurin-evening.gif";
+      this.greetingColor = "#ba91ff";
     } else {
       this.greeting = 'Good Night 🌌';
       this.gif = "assets/pompompurin-night.gif";
+      this.greetingColor = "#85d2ff";
     }
   }
 

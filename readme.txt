@@ -39,8 +39,8 @@ I designed this sleep tracker app with users who are somewhat familiar with tech
 how to navigate a smartphone, they should find it fairly straightforward to use.
 
 7. Did you design your app specifically for iOS or Android, or both?
-I didn't design the app with a specific platform in mind. My focus was more on the app's functionality and user
-experience rather than tailoring it to a particular operating system.
+I designed the app specifically with iOS platform in mind. My focus was on the app's functionality and user experience,
+ensuring it aligns with iOS design principles and provides a seamless experience for users on Apple devices.
 
 8. How can a person log overnight sleep in your app? Why did you choose to support logging overnight sleep in this way?
 I have a calendar where the user can select the day and time, and they can log the time they go to bed and the time they
@@ -70,4 +70,5 @@ Local storage.
 
 14. How does your app implement or follow principles of good mobile design?
 I try to ensure that the app is simple and user-friendly. Core features like logging and viewing data are accessible while
-all buttons and tabs are properly sized and labeled.
+all buttons and tabs are properly sized and labeled. There's also different greeting message on the home page with matching
+GIF and font color indicating whether it's currently morning, afternoon, evening, or night time.

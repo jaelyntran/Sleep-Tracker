@@ -10,7 +10,6 @@
   text-align: center;
   font-size: 20px;
   font-weight: 600;
-  color: lightskyblue;
   margin-top: 20px;
   animation: fadeIn 1.5s ease-in-out;
 }
@@ -47,7 +46,6 @@ ion-card {
   justify-content: space-between;
   height: 100%;
   margin: 5px 5px 0;
-  background-color: #3d547d;
   color: white;
 }
 
@@ -68,8 +66,14 @@ ion-icon, .page-option {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 80%; /* Adjust this value as needed */
-  max-height: 150px; /* Limit the height */
+  max-width: 80%;
+  max-height: 150px;
   height: auto;
   text-align: center;
+}
+
+:host {
+  ion-content {
+    --background: black !important;
+  }
 }
